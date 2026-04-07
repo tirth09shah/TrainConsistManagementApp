@@ -1,39 +1,55 @@
-public class UC18_LinearSearchBogie {
+import java.util.Arrays;
+
+public class UC19_BinarySearchBogie {
 
     public static void main(String[] args) {
 
-        System.out.println("=== Train Consist Management App - UC18 ===");
+        System.out.println("=== Train Consist Management App - UC19 ===");
 
-        // Step 1: Array of bogie IDs (unsorted)
+        // Step 1: Unsorted bogie IDs
         String[] bogieIDs = {
-                "BG101",
-                "BG205",
                 "BG309",
-                "BG412",
-                "BG550"
+                "BG101",
+                "BG550",
+                "BG205",
+                "BG412"
         };
 
-        // Step 2: Search key (can be taken from user, hardcoded for now)
+        // Step 2: Sort before Binary Search (IMPORTANT)
+        Arrays.sort(bogieIDs);
+
+        System.out.println("Sorted Bogie IDs:");
+        System.out.println(Arrays.toString(bogieIDs));
+
+        // Step 3: Search key
         String searchKey = "BG309";
+        System.out.println("\nSearching for: " + searchKey);
 
-        System.out.println("Searching for Bogie ID: " + searchKey);
-
-        // Step 3: Linear Search Logic
+        // Step 4: Binary Search Logic
+        int low = 0;
+        int high = bogieIDs.length - 1;
         boolean found = false;
 
-        for (int i = 0; i < bogieIDs.length; i++) {
+        while (low <= high) {
 
-            System.out.println("Checking index " + i + " → " + bogieIDs[i]);
+            int mid = (low + high) / 2;
 
-            if (bogieIDs[i].equals(searchKey)) {
+            System.out.println("Checking index " + mid + " → " + bogieIDs[mid]);
+
+            int comparison = bogieIDs[mid].compareTo(searchKey);
+
+            if (comparison == 0) {
                 found = true;
-
-                System.out.println("Match Found at index " + i);
-                break; // Early termination
+                System.out.println("Match Found at index " + mid);
+                break;
+            } else if (comparison < 0) {
+                low = mid + 1; // search right half
+            } else {
+                high = mid - 1; // search left half
             }
         }
 
-        // Step 4: Result Display
+        // Step 5: Result
         if (found) {
             System.out.println("Bogie ID " + searchKey + " exists in the train.");
         } else {
