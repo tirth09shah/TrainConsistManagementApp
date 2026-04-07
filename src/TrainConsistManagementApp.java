@@ -1,31 +1,45 @@
-import java.util.Arrays;
-
-public class UC17_SortBogieNames {
+public class UC18_LinearSearchBogie {
 
     public static void main(String[] args) {
 
-        System.out.println("=== Train Consist Management App - UC17 ===");
+        System.out.println("=== Train Consist Management App - UC18 ===");
 
-        // Step 1: Create array of bogie names (unsorted)
-        String[] bogieNames = {
-                "Sleeper",
-                "AC Chair",
-                "First Class",
-                "General",
-                "Luxury"
+        // Step 1: Array of bogie IDs (unsorted)
+        String[] bogieIDs = {
+                "BG101",
+                "BG205",
+                "BG309",
+                "BG412",
+                "BG550"
         };
 
-        // Step 2: Display before sorting
-        System.out.println("Before Sorting:");
-        System.out.println(Arrays.toString(bogieNames));
+        // Step 2: Search key (can be taken from user, hardcoded for now)
+        String searchKey = "BG309";
 
-        // Step 3: Sort using built-in method
-        Arrays.sort(bogieNames);
+        System.out.println("Searching for Bogie ID: " + searchKey);
 
-        // Step 4: Display after sorting
-        System.out.println("\nAfter Sorting (Alphabetical Order):");
-        System.out.println(Arrays.toString(bogieNames));
+        // Step 3: Linear Search Logic
+        boolean found = false;
 
-        System.out.println("\nProgram continues...");
+        for (int i = 0; i < bogieIDs.length; i++) {
+
+            System.out.println("Checking index " + i + " → " + bogieIDs[i]);
+
+            if (bogieIDs[i].equals(searchKey)) {
+                found = true;
+
+                System.out.println("Match Found at index " + i);
+                break; // Early termination
+            }
+        }
+
+        // Step 4: Result Display
+        if (found) {
+            System.out.println("Bogie ID " + searchKey + " exists in the train.");
+        } else {
+            System.out.println("Bogie ID " + searchKey + " NOT found.");
+        }
+
+        System.out.println("Program continues...");
     }
 }
