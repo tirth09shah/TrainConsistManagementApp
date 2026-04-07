@@ -1,60 +1,56 @@
-// Step 1: Custom Runtime Exception
-class CargoSafetyException extends RuntimeException {
-    public CargoSafetyException(String message) {
-        super(message);
-    }
-}
-
-// Step 2: Goods Bogie Class
-class GoodsBogie {
-    String type;   // Cylindrical / Rectangular
-    String cargo;
-
-    GoodsBogie(String type) {
-        this.type = type;
-    }
-
-    // Step 3: Cargo Assignment Method
-    public void assignCargo(String cargo) {
-        try {
-            // Safety Rule: Rectangular cannot carry Petroleum
-            if (type.equals("Rectangular") && cargo.equals("Petroleum")) {
-                throw new CargoSafetyException("Unsafe: Rectangular bogie cannot carry Petroleum");
-            }
-
-            // If safe → assign cargo
-            this.cargo = cargo;
-            System.out.println("Cargo assigned successfully: " + type + " -> " + cargo);
-
-        } catch (CargoSafetyException e) {
-            // Handle exception gracefully
-            System.out.println("Error: " + e.getMessage());
-
-        } finally {
-            // Always executes
-            System.out.println("Cargo assignment attempt completed.\n");
-        }
-    }
-}
-
-// Step 4: Main Class
-public class UC15_SafeCargoAssignment {
+public class UC16_BubbleSortPassengerBogies {
 
     public static void main(String[] args) {
 
-        System.out.println("=== Train Consist Management App - UC15 ===");
+        System.out.println("=== Train Consist Management App - UC16 ===");
 
-        // Step 5: Create bogies
-        GoodsBogie b1 = new GoodsBogie("Cylindrical");
-        GoodsBogie b2 = new GoodsBogie("Rectangular");
+        // Step 1: Passenger bogie capacities (unsorted)
+        int[] capacities = {72, 56, 24, 70, 60};
 
-        // Step 6: Safe assignment
-        b1.assignCargo("Petroleum");
+        System.out.println("Before Sorting:");
+        printArray(capacities);
 
-        // Step 7: Unsafe assignment (will be handled)
-        b2.assignCargo("Petroleum");
+        // Step 2: Bubble Sort Logic
+        int n = capacities.length;
 
-        // Step 8: Program continues
-        System.out.println("Program continues safely after cargo assignments.");
+        for (int i = 0; i < n - 1; i++) {
+
+            System.out.println("\nPass " + (i + 1) + ":");
+
+            // Inner loop for comparisons
+            for (int j = 0; j < n - i - 1; j++) {
+
+                System.out.println("Comparing " + capacities[j] + " and " + capacities[j + 1]);
+
+                // Step 3: Swap if out of order
+                if (capacities[j] > capacities[j + 1]) {
+
+                    // Swapping
+                    int temp = capacities[j];
+                    capacities[j] = capacities[j + 1];
+                    capacities[j + 1] = temp;
+
+                    System.out.println("Swapped → " + capacities[j] + " , " + capacities[j + 1]);
+                }
+            }
+
+            // Print array after each pass
+            System.out.print("After Pass " + (i + 1) + ": ");
+            printArray(capacities);
+        }
+
+        // Step 4: Final Sorted Output
+        System.out.println("\nFinal Sorted Capacities:");
+        printArray(capacities);
+
+        System.out.println("Program continues...");
+    }
+
+    // Helper Method to Print Array
+    public static void printArray(int[] arr) {
+        for (int value : arr) {
+            System.out.print(value + " ");
+        }
+        System.out.println();
     }
 }
