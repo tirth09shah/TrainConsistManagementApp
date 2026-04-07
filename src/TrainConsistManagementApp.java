@@ -1,44 +1,28 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-public class UC2_AddPassengerBogies {
+public class UC3_TrackUniqueBogieIDs {
 
     public static void main(String[] args) {
 
         // Step 1: Start Program
-        System.out.println("=== Train Consist Management App - UC2 ===");
+        System.out.println("=== Train Consist Management App - UC3 ===");
 
-        // Step 2: Create ArrayList for Passenger Bogies
-        List<String> passengerBogies = new ArrayList<>();
+        // Step 2: Create HashSet for Bogie IDs
+        Set<String> bogieIDs = new HashSet<>();
 
-        // Step 3: Add Passenger Bogies
-        passengerBogies.add("Sleeper");
-        passengerBogies.add("AC Chair");
-        passengerBogies.add("First Class");
+        // Step 3: Add Bogie IDs (including duplicates intentionally)
+        bogieIDs.add("BG101");
+        bogieIDs.add("BG102");
+        bogieIDs.add("BG103");
+        bogieIDs.add("BG101"); // duplicate
+        bogieIDs.add("BG102"); // duplicate
 
-        // Step 4: Display Bogies after Addition
-        System.out.println("Passenger bogies after addition:");
-        System.out.println(passengerBogies);
+        // Step 4: Display Unique Bogie IDs
+        System.out.println("Bogie IDs after insertion (duplicates removed automatically):");
+        System.out.println(bogieIDs);
 
-        // Step 5: Remove one bogie (AC Chair)
-        passengerBogies.remove("AC Chair");
-
-        // Step 6: Display after Removal
-        System.out.println("After removing AC Chair:");
-        System.out.println(passengerBogies);
-
-        // Step 7: Check if Sleeper exists
-        if (passengerBogies.contains("Sleeper")) {
-            System.out.println("Sleeper bogie exists in the train.");
-        } else {
-            System.out.println("Sleeper bogie does NOT exist in the train.");
-        }
-
-        // Step 8: Final State
-        System.out.println("Final passenger bogie list:");
-        System.out.println(passengerBogies);
-
-        // Step 9: Continue Program
-        System.out.println("Operations completed successfully.");
+        // Step 5: Continue Program
+        System.out.println("Only unique bogie IDs are maintained.");
     }
 }
