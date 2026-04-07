@@ -1,40 +1,30 @@
-import java.util.LinkedList;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
-public class UC4_MaintainOrderedTrainConsist {
+public class UC5_PreserveInsertionOrderBogies {
 
     public static void main(String[] args) {
 
         // Step 1: Start Program
-        System.out.println("=== Train Consist Management App - UC4 ===");
+        System.out.println("=== Train Consist Management App - UC5 ===");
 
-        // Step 2: Create LinkedList for Train Consist
-        LinkedList<String> trainConsist = new LinkedList<>();
+        // Step 2: Create LinkedHashSet for Train Formation
+        Set<String> trainFormation = new LinkedHashSet<>();
 
-        // Step 3: Add bogies in order
-        trainConsist.add("Engine");
-        trainConsist.add("Sleeper");
-        trainConsist.add("AC");
-        trainConsist.add("Cargo");
-        trainConsist.add("Guard");
+        // Step 3: Add bogies
+        trainFormation.add("Engine");
+        trainFormation.add("Sleeper");
+        trainFormation.add("Cargo");
+        trainFormation.add("Guard");
 
-        System.out.println("Initial Train Consist:");
-        System.out.println(trainConsist);
+        // Step 4: Attempt to add duplicate
+        trainFormation.add("Sleeper"); // duplicate (will be ignored)
 
-        // Step 4: Insert Pantry Car at position 2 (index 2)
-        trainConsist.add(2, "Pantry");
+        // Step 5: Display final formation
+        System.out.println("Final Train Formation (in insertion order):");
+        System.out.println(trainFormation);
 
-        System.out.println("\nAfter adding Pantry Car at position 2:");
-        System.out.println(trainConsist);
-
-        // Step 5: Remove first and last bogie
-        trainConsist.removeFirst();
-        trainConsist.removeLast();
-
-        // Step 6: Display final consist
-        System.out.println("\nFinal Train Consist after removals:");
-        System.out.println(trainConsist);
-
-        // Step 7: Continue Program
-        System.out.println("\nTrain sequence maintained successfully.");
+        // Step 6: Continue Program
+        System.out.println("Duplicates are automatically removed, order is preserved.");
     }
 }
